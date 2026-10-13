@@ -277,8 +277,16 @@ async function remoteDelete(type,id){await apiCall('delete',{kind:type,id})}
 async function syncAllLocalChanges(){if(!remoteReady||remoteBusy)return;remoteBusy=true;try{const c=remoteCfg();for(const r of recs)await remoteUpsert('daily',r);for(const r of xs)await remoteUpsert('extra',r);}catch(e){console.warn('Remote sync:',e);setConnStatus('ซิงก์ไม่สำเร็จ: '+e.message)}finally{remoteBusy=false}}
 function setConnStatus(msg){const st=document.querySelector('.top .sub.st');if(st)st.innerHTML='<i></i>'+esc(msg)}
 async function pullRemote(showToast=false){if(!remoteReady||remoteBusy)return;remoteBusy=true;try{const r=await apiCall('list');const incomingDaily=Array.isArray(r.daily)?r.daily:[],incomingExtra=Array.isArray(r.extra)?r.extra:[];
-const merge=(local,remote)=>{const m=new Map();[...local,...remote].forEach(x=>{if(!x||!x.id)return;const old=m.get(x.id);if(!old||String(x.updatedAt||'')>=String(old.updatedAt||''))m.set(x.id,x)});return [...m.values()].sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')))};
-const oldDaily=JSON.stringify(recs),oldExtra=JSON.stringify(xs);recs=merge(recs,incomingDaily);xs=merge(xs,incomingExtra);localStorage.setItem('ks_records_v2',JSON.stringify(recs));localStorage.setItem('ks_extra_records_v1',JSON.stringify(xs));if(oldDaily!==JSON.stringify(recs)||oldExtra!==JSON.stringify(xs)){render();renderHist();renderX()}setConnStatus('เชื่อมต่อ Google Sheets แล้ว · ตรวจข้อมูลทุก 7 วินาที');if(showToast)toast('เชื่อมต่อและซิงก์ข้อมูลแล้ว');
+// Google Sheets เป็นแหล่งข้อมูลหลัก: ใช้รายการที่มีอยู่บนเซิร์ฟเวอร์โดยตรง
+// เพื่อให้รายการที่ถูกลบจากอุปกรณ์หนึ่ง หายไปจากอุปกรณ์อื่นด้วย
+const oldDaily=JSON.stringify(recs),oldExtra=JSON.stringify(xs);
+recs=incomingDaily.filter(x=>x&&x.id).sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')));
+xs=incomingExtra.filter(x=>x&&x.id).sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')));
+localStorage.setItem('ks_records_v2',JSON.stringify(recs));
+localStorage.setItem('ks_extra_records_v1',JSON.stringify(xs));
+if(oldDaily!==JSON.stringify(recs)||oldExtra!==JSON.stringify(xs)){render();renderHist();renderX()}
+setConnStatus('เชื่อมต่อ Google Sheets แล้ว · ตรวจข้อมูลทุก 7 วินาที');
+if(showToast)toast('เชื่อมต่อและซิงก์ข้อมูลแล้ว');
 }catch(e){setConnStatus('ออฟไลน์/เชื่อมต่อไม่ได้');if(showToast)throw e}finally{remoteBusy=false}}
 async function connectNow(){const url=$('apiUrl').value.trim(),password=$('apiPass').value;if(!url.endsWith('/exec')||!/^https:\/\/script\.google\.com\/macros\/s\//.test(url)){ $('connectMsg').textContent='URL ต้องเป็น Apps Script Web App URL ที่ลงท้ายด้วย /exec';return}if(!password){$('connectMsg').textContent='กรุณากรอกรหัสผ่าน';return}localStorage.setItem(REMOTE_CFG_KEY,JSON.stringify({url,password}));$('connectMsg').textContent='กำลังตรวจสอบการเชื่อมต่อ…';try{const r=await apiCall('list');const remoteDaily=Array.isArray(r.daily)?r.daily:[],remoteExtra=Array.isArray(r.extra)?r.extra:[];
 // Preserve existing browser data on first connection by uploading it if the remote tables are empty.
