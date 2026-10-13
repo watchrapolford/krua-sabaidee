@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ครัวสบายดี | บัญชีร้าน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--card:#FAF9F5;--ink:#1F1E1D;--mut:#6F6D66;--line:#E6E3D6;--clay:#D97757;--clayd:#B85A3B;--grn:#5B7F58;--red:#B5503C;--serif:'Noto Serif Thai',Georgia,serif;--sans:'IBM Plex Sans Thai','Noto Sans Thai',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.app{max-width:1120px;margin:auto;padding:20px 20px 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:42px;height:42px;border-radius:50%;background:var(--clay);color:#fff;display:grid;place-items:center;font:600 19px var(--serif)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0}h1{font-size:22px;line-height:1.2}h2{font-size:22px}h3{font-size:16px}
+.sub,.tiny{color:var(--mut);font-size:13px}.tiny{font-size:12px}
+.st{display:flex;align-items:center;gap:6px}.st i{width:7px;height:7px;border-radius:50%;background:var(--grn)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;font-weight:500;transition:background .15s}
+.btn:hover{background:#EFEDE2}.pri{background:var(--clay);border-color:var(--clay);color:#fff}.pri:hover{background:var(--clayd)}
+.lnk{border:0;background:none;color:var(--clayd);padding:4px 6px;font-weight:500}.lnk.del{color:var(--red)}
+.nav{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:28px;overflow:auto}
+.nav button{border:0;background:none;padding:10px 14px;color:var(--mut);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500}
+.nav button.on{color:var(--ink);border-color:var(--clay)}
+.hidden{display:none!important}
+.head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+input:focus,select:focus,textarea:focus{border-color:var(--clay);outline:none;box-shadow:0 0 0 3px #D9775724}
+.head input{width:auto}
+.hero{padding:6px 0 28px}
+.hero .big{font:500 clamp(44px,8vw,76px)/1.05 var(--serif);letter-spacing:-.01em;margin:6px 0 4px}
+.pos{color:var(--grn)}.neg{color:var(--red)}
+.ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);margin-bottom:28px}
+.col{padding:18px 24px 6px 0}.col+.col{padding-left:24px;border-left:1px solid var(--line)}
+.fig{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.fig:last-child{border:0}.fig span{color:var(--mut);font-size:13px}
+.fig b{font:500 19px var(--serif);font-variant-numeric:tabular-nums;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.panel .head{margin-bottom:12px}
+.chart{height:250px}.chart canvas{width:100%;height:100%}
+#legend{text-align:center;font-size:13px;color:var(--mut);min-height:24px;margin-top:6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.cat{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.tw{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:500;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}.empty{text-align:center;color:var(--mut);padding:28px}
+.entry{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.sec{margin-bottom:26px}.sec h3{margin-bottom:4px}.sec>.sub{margin-bottom:14px}
+.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.fg3{grid-template-columns:repeat(3,1fr)}
+.f{display:flex;flex-direction:column;gap:5px}.f label{font-size:13px;font-weight:500}.full{grid-column:1/-1}
+.side{position:sticky;top:16px}.side .fig b{font-size:22px}.side .btn{width:100%;margin-top:10px;padding:11px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:10px;z-index:9}
+.tips{list-style:none;margin:0;padding:0}.tips li{display:grid;grid-template-columns:4px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}.tips li:last-child{border:0}
+.tips i{border-radius:2px;background:var(--mut)}.tips .w i{background:var(--clay)}.tips .g i{background:var(--grn)}.tips b{display:block;font-weight:600}.tips span{color:var(--mut);font-size:14px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr)) minmax(0,1.25fr);gap:4px}.cal .dh{font-size:12px;color:var(--mut);text-align:center;padding:2px 0 4px}
+.cd{min-height:66px;border-radius:8px;padding:6px 7px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:none;text-align:left;font:inherit}
+.cd small{font-size:11px;color:var(--mut)}.cd b{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+button.cd{cursor:pointer}button.cd:hover{border-color:var(--clay)}.cd.e{border-style:dashed}.cd.e small{opacity:.6}.cd.o{visibility:hidden}.cd.best{outline:2px solid var(--ink);outline-offset:-1px}.cd.wk{background:#F5F4ED;border-color:transparent}
+.wdr{display:grid;grid-template-columns:92px 1fr 96px;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}.wdr:last-of-type{border:0}.wdr .bar{height:10px;background:var(--line);border-radius:5px;position:relative}.wdr .bar div{height:100%;border-radius:5px}.wdr .bar i{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.55}
+.cd.cl{background:repeating-linear-gradient(135deg,transparent 0 5px,#E6E3D6 5px 6px);border-color:transparent}.cd.cl b{color:var(--mut);font-weight:500}
+@media(max-width:560px){.cd{min-height:50px;padding:4px}.cd b{font-size:11px}.cd small{font-size:10px}.cal{gap:2px}}
+@media(max-width:900px){.ledger,.grid2,.entry{grid-template-columns:1fr}.col,.col+.col{padding:16px 0 6px;border-left:0}.col+.col{border-top:1px solid var(--line)}.side{position:static}}
+@media(max-width:560px){.app{padding:14px}.fg,.fg3{grid-template-columns:1fr}.panel{padding:16px}}
+@media print{.no-print,.nav{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body><div class="app">
+<header class="top"><div class="brand"><div class="logo">ค</div><div><h1>ครัวสบายดี</h1><div class="sub st"><i></i>เก็บข้อมูลในเครื่องนี้</div></div></div>
+<div class="row no-print"><button class="btn" onclick="openConnect()">ตั้งค่าการเชื่อมต่อ</button><button class="btn" onclick="exportCSV()">ส่งออก CSV</button><button class="btn" onclick="print()">พิมพ์ / PDF</button><button class="btn pri" onclick="newRec()">บันทึกรายวัน</button></div></header>
+<nav class="nav no-print"><button class="on" data-p="dash">ภาพรวม</button><button data-p="entry">บันทึกรายวัน</button><button data-p="extra">รายการเพิ่มเติม</button><button data-p="hist">ย้อนหลัง</button></nav>
+
+<section id="dash">
+<div class="head"><div><h2>ภาพรวมการเงิน</h2><div class="sub">ผลประกอบการของร้านในเดือนที่เลือก</div></div>
+<div class="row no-print"><input id="mf" type="month" aria-label="เดือน"><button class="btn" onclick="mf.value='';render()">ดูทั้งหมด</button></div></div>
+<div class="hero"><div class="sub">กำไรโดยประมาณ</div><div class="big" id="mProfit">฿0</div><div class="sub" id="mMargin"></div></div>
+<div class="ledger">
+<div class="col"><h3>รายรับ</h3><div class="fig"><span>รายรับรวม</span><b id="mInc">฿0</b></div><div class="fig"><span>ขายกาแฟ</span><b id="mCoffee">฿0</b></div><div class="fig"><span>รายได้เพิ่มเติม</span><b id="mOther">฿0</b></div></div>
+<div class="col"><h3>รายจ่าย</h3><div class="fig"><span>รายจ่ายรวม</span><b id="mExp">฿0</b></div><div class="fig"><span>เพิ่มเติม จ่ายเงินสด</span><b id="mXC">฿0</b></div><div class="fig"><span>เพิ่มเติม จ่ายเงินโอน</span><b id="mXT">฿0</b></div><div class="fig"><span>ค่าแรง</span><b id="mLabor">฿0</b></div><div class="tiny" id="mLaborPct" style="padding-top:2px"></div></div>
+<div class="col"><h3>เงินคงเหลือจริง</h3><div class="fig"><span>เงินสด</span><b id="mCashLeft">฿0</b></div><div class="fig"><span>เงินโอน</span><b id="mTrLeft">฿0</b></div><div class="tiny" style="padding-top:8px">ยอดรับของแต่ละช่องทาง หักรายจ่ายเพิ่มเติม</div></div>
+</div>
+<div class="grid2"><div class="panel"><div class="head"><div><h3 id="calTitle">ปฏิทินยอดขาย</h3><div class="sub" id="calSub"></div></div></div><div class="cal" id="cal"></div>
+<div class="row tiny" style="margin-top:12px;gap:10px"><span>น้อย</span><span style="width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,rgba(217,119,87,.12),rgba(217,119,87,.75))"></span><span>มาก</span><span>กรอบดำคือวันที่ขายดีที่สุด ช่องลายเส้นคือวันหยุดประจำ แตะวันที่เพื่อแก้ไขหรือบันทึกวันนั้น</span></div></div>
+<div class="panel"><div class="head"><div><h3>วันไหนคนเยอะ วันไหนคนน้อย</h3><div class="sub">เทียบยอดขายแต่ละวันกับค่าเฉลี่ย ใช้กำหนดปริมาณวัตถุดิบ</div></div></div><div id="wd"></div></div></div>
+<div class="grid2"><div class="panel"><div class="head"><div><h3>รายรับรายวัน</h3><div class="sub">เทียบกับค่าเฉลี่ยของช่วงที่เลือก (ไม่รวมกาแฟและรายได้เพิ่มเติม)</div></div></div><div class="chart"><canvas id="trend"></canvas></div></div>
+<div class="panel"><div class="head"><div><h3>รายจ่ายแยกหมวด</h3><div class="sub">แตะหรือชี้ที่สีเพื่อดูยอด</div></div></div><div class="chart"><canvas id="pie"></canvas></div><div id="legend"></div></div></div>
+<div class="grid2"><div class="panel"><div class="head"><h3>รายการล่าสุด</h3><button class="lnk no-print" onclick="go('hist')">ดูทั้งหมด</button></div><div class="tw"><table><thead><tr><th>วันที่</th><th class="num">เงินสด</th><th class="num">เงินโอน</th><th class="num">รายจ่าย</th><th class="num">กาแฟ</th><th class="num">รายรับรวม</th></tr></thead><tbody id="recent"></tbody></table></div></div>
+<div class="panel"><h3>หมวดรายจ่ายสูงสุด</h3><div id="cats" style="margin-top:8px"></div></div></div>
+<div class="panel"><div class="head"><div><h3>ข้อเสนอแนะสำหรับร้าน</h3><div class="sub" id="advSub"></div></div></div><ul class="tips" id="tips"></ul><div class="tiny" style="margin-top:12px">คำนวณจากตัวเลขที่บันทึกไว้ เป็นแนวทางประกอบการตัดสินใจ ไม่ใช่คำแนะนำทางบัญชีหรือภาษี</div></div>
+</section>
+
+<section id="entry" class="hidden">
+<div class="head"><div><h2 id="eTitle">บันทึกรายวัน</h2><div class="sub">กรอกยอดของวัน ระบบรวมยอดให้ทางขวา</div></div><button class="btn no-print" onclick="resetForm()">ล้างฟอร์ม</button></div>
+<form id="form" class="entry" onsubmit="saveRec(event)">
+<div class="panel">
+<div class="sec"><div class="fg"><div class="f"><label for="date">วันที่ (วว/ดด/ปปปป พ.ศ.) *</label><input id="date" inputmode="numeric" maxlength="10" placeholder="เช่น 08/10/2569" required oninput="fmtDate(this)"></div><div class="f"><label for="note">หมายเหตุของวัน</label><input id="note" placeholder="เช่น มีงานเลี้ยงพิเศษ"></div></div></div>
+<div class="sec"><h3>รายจ่ายประจำวัน</h3><div class="sub">กรอกเฉพาะช่องที่มีรายจ่าย</div><div class="fg fg3">
+<div class="f"><label for="gas">ค่าแก๊ส</label><input id="gas" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="freezer">ค่าของตู้แช่</label><input id="freezer" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="ice">ค่าน้ำแข็ง</label><input id="ice" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="market">ซื้อของตลาด</label><input id="market" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="shop">ซื้อของในร้าน</label><input id="shop" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="labor">ค่าแรง</label><input id="labor" class="x" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="advance">เงินเบิก</label><input id="advance" class="x" type="number" min="0" step=".01" placeholder="0.00"></div></div></div>
+<div class="sec"><h3>รายรับ</h3><div class="sub">ยอดที่ลูกค้าจ่ายเข้าร้านวันนี้</div><div class="fg">
+<div class="f"><label for="cash">เงินสด</label><input id="cash" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="transfer">เงินโอน</label><input id="transfer" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="coffee">ขายกาแฟ</label><input id="coffee" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="otherIncome">รายได้เพิ่มเติม</label><input id="otherIncome" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="otherType">รับรายได้เพิ่มเติมเป็น</label><select id="otherType"><option value="cash">เงินสด</option><option value="transfer">เงินโอน</option></select></div></div></div>
+<div class="f"><label for="details">บันทึกช่วยจำ</label><textarea id="details" rows="2" placeholder="สิ่งที่อยากตรวจสอบภายหลัง"></textarea></div>
+</div>
+<aside class="panel side"><h3>สรุปของวัน</h3><div class="fig"><span>รายจ่ายรวม</span><b id="pExp">฿0</b></div><div class="fig"><span>ยอดขายรวม</span><b id="pInc">฿0</b></div><div class="tiny">ยอดขายรวม = เงินสด + เงินโอน + รายได้เพิ่มเติม + เงินที่ใช้จ่ายจากรายรับ</div>
+<button class="btn pri" type="submit">บันทึกข้อมูล</button><button class="btn" type="button" onclick="go('dash')">ยกเลิก</button></aside>
+</form></section>
+
+<section id="extra" class="hidden">
+<div class="head"><div><h2>รายการเพิ่มเติม</h2><div class="sub">ค่าใช้จ่ายนอกเหนือจากรายวัน แยกเงินสดและเงินโอน</div></div></div>
+<div class="ledger"><div class="col"><div class="fig"><span>จ่ายเงินสด</span><b id="eC">฿0</b></div><div class="fig"><span>จ่ายเงินโอน</span><b id="eT">฿0</b></div></div>
+<div class="col"><div class="fig"><span>เงินสดคงเหลือจริง</span><b id="eCL">฿0</b></div><div class="fig"><span>เงินโอนคงเหลือจริง</span><b id="eTL">฿0</b></div></div><div class="col"><div class="tiny" style="padding-top:18px">ยอดรวมตามเดือนที่เลือกในหน้าภาพรวม</div></div></div>
+<div class="panel" style="margin-bottom:18px"><div class="head"><h3>เพิ่มรายการ</h3></div><form id="xform" onsubmit="saveX(event)"><div class="fg">
+<div class="f"><label for="xDate">วันที่ *</label><input id="xDate" inputmode="numeric" maxlength="10" required oninput="fmtDate(this)"></div>
+<div class="f"><label for="xNote">รายละเอียด *</label><input id="xNote" required placeholder="เช่น ค่าน้ำประปา"></div>
+<div class="f"><label for="xCash">จ่ายเงินสด</label><input id="xCash" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f"><label for="xTr">จ่ายเงินโอน</label><input id="xTr" type="number" min="0" step=".01" placeholder="0.00"></div>
+<div class="f full"><label for="xDet">หมายเหตุ</label><textarea id="xDet" rows="2"></textarea></div>
+<div class="row full"><button class="btn pri" type="submit">บันทึกรายการ</button><button class="btn" type="button" onclick="resetX()">ล้างฟอร์ม</button></div></div></form></div>
+<div class="panel"><div class="head"><h3>ประวัติรายการเพิ่มเติม</h3><button class="btn no-print" onclick="exportX()">ส่งออก CSV</button></div><div class="tw"><table><thead><tr><th>วันที่</th><th>รายละเอียด</th><th class="num">เงินสด</th><th class="num">เงินโอน</th><th class="num">รวม</th><th class="no-print"></th></tr></thead><tbody id="xRows"></tbody></table></div></div>
+</section>
+
+<section id="hist" class="hidden">
+<div class="head"><div><h2>ย้อนหลัง</h2><div class="sub">ค้นหา แก้ไข หรือลบรายการรายวัน</div></div></div>
+<div class="panel"><div class="row no-print" style="margin-bottom:14px"><input id="q" style="max-width:260px" placeholder="ค้นหาวันที่หรือหมายเหตุ" oninput="renderHist()"><input id="hm" type="month" style="width:auto" onchange="renderHist()"><button class="btn" onclick="q.value=hm.value='';renderHist()">ล้างตัวกรอง</button></div>
+<div class="tw"><table><thead><tr><th>วันที่</th><th>หมายเหตุ</th><th class="num">เงินสด</th><th class="num">เงินโอน</th><th class="num">รายจ่าย</th><th class="num">กาแฟ</th><th class="num">รายรับรวม</th><th class="no-print"></th></tr></thead><tbody id="hRows"></tbody></table></div></div>
+</section>
+<div id="connectLayer" style="position:fixed;inset:0;background:#1F1E1D99;z-index:20;display:none;align-items:center;justify-content:center;padding:16px">
+<div class="panel" style="width:min(100%,480px);background:#fff;max-height:90vh;overflow:auto"><h2 style="margin-bottom:8px">เชื่อมต่อบัญชีร้าน</h2><p class="sub">กรอก URL ของ Apps Script Web App และรหัสผ่านที่ผู้ดูแลตั้งไว้ ข้อมูลจะซิงก์กับ Google Sheets ทุกประมาณ 7 วินาที</p>
+<div class="f" style="margin:14px 0"><label for="apiUrl">Apps Script Web App URL (ลงท้าย /exec)</label><input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url"></div>
+<div class="f" style="margin:14px 0"><label for="apiPass">รหัสผ่านร่วมของร้าน</label><input id="apiPass" type="password" placeholder="รหัสผ่านที่ผู้ดูแลตั้งไว้" autocomplete="current-password"></div>
+<div class="tiny" style="margin-bottom:14px">ใช้รหัสเดียวกันในอุปกรณ์ของคุณและพี่สาว อย่าส่ง URL สำหรับตั้งค่า Script Properties หรือข้อมูลบัญชี Google ให้ผู้อื่น</div>
+<div class="row"><button class="btn pri" onclick="connectNow()">เชื่อมต่อและซิงก์</button><button class="btn" onclick="closeConnect()">ยกเลิก</button><button class="btn" onclick="forgetConnect()">ล้างการตั้งค่า</button></div><div id="connectMsg" class="sub" style="margin-top:12px"></div></div></div>
+<div id="toast" class="toast hidden" role="status"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id),F="'IBM Plex Sans Thai',system-ui,sans-serif";
+const L=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+let recs=L('ks_records_v2',[]),xs=L('ks_extra_records_v1',[]),editId=null,editX=null;
+const FX=[['gas','ค่าแก๊ส'],['freezer','ค่าของตู้แช่'],['ice','ค่าน้ำแข็ง'],['market','ซื้อของตลาด'],['shop','ซื้อของในร้าน']];
+const money=v=>'฿'+Number(v||0).toLocaleString('th-TH',{maximumFractionDigits:2}),n=id=>Number($(id).value||0),sum=(a,f)=>a.reduce((s,x)=>s+f(x),0);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const save=()=>{localStorage.setItem('ks_records_v2',JSON.stringify(recs));localStorage.setItem('ks_extra_records_v1',JSON.stringify(xs))};
+const toast=s=>{const t=$('toast');t.textContent=s;t.classList.remove('hidden');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('hidden'),2600)};
+const thToday=()=>{const d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+(d.getFullYear()+543)};
+function parseDate(s){s=String(s||'').trim();let y,m,d;if(/^\d{4}-\d{2}-\d{2}$/.test(s))[y,m,d]=s.split('-').map(Number);else{const k=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);if(!k)return null;d=+k[1];m=+k[2];y=+k[3];if(y>=2400)y-=543}const t=new Date(y,m-1,d);if(t.getFullYear()!==y||t.getMonth()!==m-1||t.getDate()!==d)return null;return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0')}
+function displayDate(s){const i=parseDate(s);if(!i)return s||'—';const[y,m,d]=i.split('-');return d+'/'+m+'/'+(+y+543)}
+function fmtDate(el){let v=el.value.replace(/\D/g,'').slice(0,8);if(v.length>4)v=v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4);else if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);el.value=v}
+const exps=r=>sum(r.expenses||[],x=>+x.amount||0)+(+r.labor||0)+(+r.cashAdvance||0),inc=r=>(+r.cash||0)+(+r.transfer||0)+(+r.otherIncome||0)+exps(r);
+const inCh=(a,t)=>sum(a,r=>(+r[t]||0)+((r.otherIncomeType||'cash')===t?(+r.otherIncome||0):0));
+function go(p){['dash','entry','extra','hist'].forEach(x=>$(x).classList.toggle('hidden',x!==p));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));if(p==='dash')render();if(p==='hist')renderHist();if(p==='extra')renderX();scrollTo(0,0)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.p));
+const sel=()=>{const m=$('mf').value;return[recs.filter(r=>!m||r.date.startsWith(m)),xs.filter(r=>!m||r.date.startsWith(m))]};
+function render(){const[a,x]=sel(),I=sum(a,inc),xc=sum(x,r=>+r.cash||0),xt=sum(x,r=>+r.transfer||0),E=sum(a,exps)+xc+xt,P=I-E;
+$('mProfit').textContent=money(P);$('mProfit').className='big '+(P<0?'neg':'pos');$('mMargin').textContent='อัตรากำไร '+(I?(P/I*100).toFixed(1):'0')+'% ของรายรับรวม';
+$('mInc').textContent=money(I);$('mCoffee').textContent=money(sum(a,r=>+r.coffee||0));$('mOther').textContent=money(sum(a,r=>+r.otherIncome||0));const L=sum(a,r=>+r.labor||0)+sum(x.filter(r=>String(r.note||'').includes('ค่าแรง')),r=>(+r.cash||0)+(+r.transfer||0));$('mLabor').textContent=money(L);$('mLaborPct').textContent='ค่าแรงคิดเป็น '+(I?(L/I*100).toFixed(1):'0')+'% ของยอดขายทั้งหมด';
+$('mExp').textContent=money(E);$('mXC').textContent=money(xc);$('mXT').textContent=money(xt);
+$('mCashLeft').textContent=money(inCh(a,'cash')-xc);$('mTrLeft').textContent=money(inCh(a,'transfer')-xt);
+const last=[...a].sort((p,q)=>q.date.localeCompare(p.date)).slice(0,7);
+$('recent').innerHTML=last.length?last.map(r=>`<tr><td>${displayDate(r.date)}</td><td class="num">${money(r.cash)}</td><td class="num">${money(r.transfer)}</td><td class="num">${money(exps(r))}</td><td class="num">${money(r.coffee)}</td><td class="num"><b>${money(inc(r))}</b></td></tr>`).join(''):'<tr><td colspan="6" class="empty">ยังไม่มีข้อมูลในเดือนนี้ กด “บันทึกรายวัน” เพื่อเริ่ม</td></tr>';
+const ct=catTotals(a,x);$('cats').innerHTML=ct.length?ct.slice(0,8).map(([c,v])=>`<div class="cat"><span>${esc(c)}</span><b>${money(v)}</b></div>`).join(''):'<div class="empty">ยังไม่มีรายจ่าย</div>';
+drawTrend(a);drawPie(ct);advise(a,x,I,E,P,ct);renderCal(a)}
+function catTotals(a,x){const o={};a.forEach(r=>{(r.expenses||[]).forEach(e=>o[e.category]=(o[e.category]||0)+(+e.amount||0));if(+r.labor)o['ค่าแรง']=(o['ค่าแรง']||0)+ +r.labor;if(+r.cashAdvance)o['เงินเบิก']=(o['เงินเบิก']||0)+ +r.cashAdvance});x.forEach(r=>{const k=(r.note||'').trim()||'รายการเพิ่มเติม';o[k]=(o[k]||0)+(+r.cash||0)+(+r.transfer||0)});return Object.entries(o).filter(e=>e[1]>0).sort((p,q)=>q[1]-p[1])}
+function cv(id){const c=$(id),d=devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*d;c.height=h*d;const g=c.getContext('2d');g.scale(d,d);g.clearRect(0,0,w,h);return{g,w,h,c}}
+function drawTrend(a){const{g,w,h}=cv('trend');g.font='11px '+F;g.fillStyle='#6F6D66';
+const d=[...a].sort((p,q)=>p.date.localeCompare(q.date)).map(r=>({v:(+r.cash||0)+(+r.transfer||0)+exps(r),day:+r.date.slice(8)}));
+if(!d.length){g.textAlign='center';g.fillText('เพิ่มข้อมูลเพื่อแสดงกราฟ',w/2,h/2);return}
+const avg=sum(d,x=>x.v)/d.length,mx=Math.max(1,...d.map(x=>x.v),avg)*1.15,pl=46,pr=8,pt=10,pb=24,cw=w-pl-pr,ch=h-pt-pb;
+g.textAlign='right';for(let i=0;i<4;i++){const y=pt+ch*i/3;g.strokeStyle='#E6E3D6';g.beginPath();g.moveTo(pl,y);g.lineTo(w-pr,y);g.stroke();g.fillText(Math.round(mx*(1-i/3)).toLocaleString('th-TH'),pl-6,y+4)}
+const P=d.map((x,i)=>({x:pl+(d.length===1?cw/2:cw*i/(d.length-1)),y:pt+ch-x.v/mx*ch,day:x.day}));
+const ay=pt+ch-avg/mx*ch;g.save();g.setLineDash([5,4]);g.strokeStyle='#6F6D66';g.beginPath();g.moveTo(pl,ay);g.lineTo(w-pr,ay);g.stroke();g.restore();
+g.strokeStyle='#D97757';g.lineWidth=2.2;g.lineJoin='round';g.beginPath();P.forEach((p,i)=>i?g.lineTo(p.x,p.y):g.moveTo(p.x,p.y));g.stroke();
+g.fillStyle='#D97757';P.forEach(p=>{g.beginPath();g.arc(p.x,p.y,3.2,0,7);g.fill()});
+g.fillStyle='#6F6D66';g.textAlign='center';const st=Math.ceil(P.length/10);P.forEach((p,i)=>{if(i%st===0||i===P.length-1)g.fillText(p.day,p.x,h-6)});
+g.textAlign='right';g.fillText('เฉลี่ย '+money(Math.round(avg)),w-pr,ay-5)}
+const PAL=['#D97757','#5B7F58','#C9A24B','#6F86A6','#A7677E','#4F7C82','#8A7B6A','#B9B1A0'];
+function drawPie(ct){const{g,w,h,c}=cv('pie'),lg=$('legend'),hint='ชี้หรือแตะที่สีเพื่อดูยอด';lg.textContent=hint;
+if(!ct.length){g.font='13px '+F;g.fillStyle='#6F6D66';g.textAlign='center';g.fillText('ยังไม่มีรายจ่าย',w/2,h/2);c.onmousemove=c.onclick=null;return}
+const T=sum(ct,x=>x[1]),cx=w/2,cy=h/2,R=Math.min(w,h)*.42,r0=R*.62;let s=-Math.PI/2;const arcs=ct.map(([k,v],i)=>{const e=s+v/T*Math.PI*2,o={k,v,col:PAL[i%PAL.length],s,e};g.beginPath();g.arc(cx,cy,R,s,e);g.arc(cx,cy,r0,e,s,true);g.closePath();g.fillStyle=o.col;g.fill();g.strokeStyle='#FAF9F5';g.lineWidth=2;g.stroke();s=e;return o});
+g.fillStyle='#1F1E1D';g.font='500 17px '+"'Noto Serif Thai',serif";g.textAlign='center';g.fillText(money(T),cx,cy+6);
+const pick=e=>{const b=c.getBoundingClientRect(),dx=e.clientX-b.left-cx,dy=e.clientY-b.top-cy,d=Math.hypot(dx,dy);if(d>R||d<r0)return null;let t=Math.atan2(dy,dx);if(t<-Math.PI/2)t+=Math.PI*2;return arcs.find(x=>t>=x.s&&t<x.e)};
+const show=a=>{lg.innerHTML=a?`<span class="sw" style="background:${a.col}"></span><b>${esc(a.k)}</b> ${money(a.v)} (${(a.v/T*100).toFixed(1)}%)`:hint};
+c.onmousemove=c.onclick=e=>show(pick(e));c.onmouseleave=()=>show(null)}
+
+const CLOSED=[0],DAYS=['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'],pc=v=>Math.round(v*100)+'%';
+function advise(a,x,I,E,P,ct){const T=[],add=(t,h,b)=>T.push(`<li class="${t}"><i></i><div><b>${h}</b><span>${b}</span></div></li>`),m=$('mf').value;
+$('advSub').textContent='วิเคราะห์ '+a.length+' วัน อัปเดตทุกครั้งที่บันทึกข้อมูล';
+if(a.length<5){add('','ข้อมูลยังน้อยเกินไป','มีข้อมูล '+a.length+' วัน ลองบันทึกให้ครบอย่างน้อย 7 วัน ข้อเสนอแนะจะเฉพาะกับร้านมากขึ้น')}
+else{let bad=0;const w=(h,b)=>{bad++;add('w',h,b)},mg=I?P/I:0;
+if(P<0)w('ช่วงนี้รายจ่ายมากกว่ารายรับ','ขาดทุน '+money(-P)+' ดูหมวดรายจ่ายสูงสุดด้านบนก่อน แล้วเลือกลดทีละหมวด');
+else if(mg<.2)w('กำไรเหลือ '+pc(mg)+' ของรายรับ','ถ้าตั้งเป้า 20% ขึ้นไป ต้องลดรายจ่ายอีกประมาณ '+money(Math.round(I*.2-P))+' หรือเพิ่มยอดขายเท่ากัน');
+else add('g','กำไรอยู่ที่ '+pc(mg)+' ของรายรับ','อยู่ในระดับดี รักษาระดับนี้ไว้ และเก็บเงินสำรองส่วนหนึ่งสำหรับเดือนที่ยอดตก');
+if(ct.length&&E){const[k,v]=ct[0],sh=v/E;if(sh>.3)w('“'+esc(k)+'” กินรายจ่ายถึง '+pc(sh),'เป็นหมวดเดียวที่ใหญ่ที่สุด ลองเทียบราคากับร้านอื่น ซื้อครั้งละมากขึ้นเพื่อต่อรอง หรือตรวจว่ามีของเหลือทิ้ง')}
+const lab=sum(a,r=>(+r.labor||0)+(+r.cashAdvance||0));if(I&&lab/I>.25)w('ค่าแรงและเงินเบิกรวม '+pc(lab/I)+' ของรายรับ','ลองเทียบจำนวนคนต่อวันกับยอดขายของวันนั้น วันที่ขายน้อยอาจลดคนหรือลดชั่วโมงได้');
+const xe=sum(x,r=>(+r.cash||0)+(+r.transfer||0));if(E&&xe/E>.15)w('รายการเพิ่มเติมคิดเป็น '+pc(xe/E)+' ของรายจ่าย','ถ้ามีรายการที่เกิดซ้ำทุกเดือน เช่น น้ำ ไฟ ซ่อมอุปกรณ์ ให้ตั้งงบไว้ล่วงหน้าจะคุมเงินสดได้ง่ายขึ้น');
+const cl=inCh(a,'cash')-sum(x,r=>+r.cash||0),tl=inCh(a,'transfer')-sum(x,r=>+r.transfer||0);if(cl<0)w('เงินสดคงเหลือติดลบ '+money(-cl),'รายจ่ายเพิ่มเติมที่จ่ายเงินสดมากกว่ายอดรับเงินสด ตรวจว่าบันทึกถูกช่องหรือไม่ หรือสำรองเงินสดเพิ่ม');
+if(tl<0)w('เงินโอนคงเหลือติดลบ '+money(-tl),'รายจ่ายที่จ่ายด้วยเงินโอนมากกว่ายอดที่ลูกค้าโอนเข้า ตรวจว่าบันทึกถูกช่องหรือไม่');
+if(a.length>=10){const g={};a.forEach(r=>{const d=new Date(r.date+'T00:00:00').getDay();(g[d]=g[d]||[]).push((+r.cash||0)+(+r.transfer||0)+exps(r))});
+const av=Object.entries(g).filter(e=>e[1].length>=2).map(([d,v])=>[+d,sum(v,z=>z)/v.length]).sort((p,q)=>q[1]-p[1]);
+if(av.length>=3){const hi=av[0],lo=av[av.length-1];if(lo[1]>0&&hi[1]/lo[1]>1.3)w('วัน'+DAYS[hi[0]]+'ขายดีที่สุด วัน'+DAYS[lo[0]]+'ขายน้อยที่สุด','เฉลี่ย '+money(Math.round(hi[1]))+' เทียบกับ '+money(Math.round(lo[1]))+' เตรียมของให้พอวัน'+DAYS[hi[0]]+' และลองทำโปรหรือเมนูพิเศษในวัน'+DAYS[lo[0]])}}
+const cf=sum(a,r=>+r.coffee||0);if(cf>0&&cf/(I+cf)<.1)add('','กาแฟเป็นรายได้เสริมเพียง '+pc(cf/(I+cf)),'ลองจัดเซ็ตอาหารคู่กาแฟ เพราะต้นทุนเพิ่มน้อยและใช้ลูกค้าเดิมที่มาอยู่แล้ว');
+if(m){const[Y,M]=m.split('-').map(Number),pm=new Date(Y,M-2,1),pk=pm.getFullYear()+'-'+String(pm.getMonth()+1).padStart(2,'0'),pa=recs.filter(r=>r.date.startsWith(pk));
+if(pa.length>=5){const f=l=>sum(l,r=>(+r.cash||0)+(+r.transfer||0)+exps(r))/l.length,c=f(a),p=f(pa);if(c<p*.9)w('ยอดขายเฉลี่ยต่อวันลดลง '+pc(1-c/p)+' จากเดือนก่อน','เดือนก่อนเฉลี่ย '+money(Math.round(p))+' เดือนนี้ '+money(Math.round(c))+' ลองทบทวนเมนู ราคา หรือช่วงเวลาเปิดร้าน');else if(c>p*1.1)add('g','ยอดขายเฉลี่ยต่อวันเพิ่มขึ้น '+pc(c/p-1)+' จากเดือนก่อน','ดูว่าเพราะเมนูหรือวันไหนที่ขายดีขึ้น แล้วทำซ้ำ')}}
+if(!bad)add('g','ยังไม่พบจุดที่ควรกังวล','รายจ่ายกระจายตัวดีและกำไรอยู่ในเกณฑ์ ข้อเสนอแนะจะเปลี่ยนเองเมื่อมีข้อมูลใหม่')}
+$('tips').innerHTML=T.join('')}
+
+function renderCal(a){const ks=recs.map(r=>r.date.slice(0,7)).sort(),key=$('mf').value||ks[ks.length-1]||new Date().toISOString().slice(0,7),[Y,M]=key.split('-').map(Number),by={},id={};
+recs.filter(r=>r.date.startsWith(key)).forEach(r=>{by[r.date]=(by[r.date]||0)+(+r.cash||0)+(+r.transfer||0)+exps(r);id[r.date]=id[r.date]||r.id});
+const first=new Date(Y,M-1,1).getDay(),dim=new Date(Y,M,0).getDate(),vals=Object.values(by),mx=Math.max(1,...vals),best=vals.length?Object.keys(by).find(k=>by[k]===mx):null,tot=sum(vals,v=>v);
+$('calTitle').textContent='ปฏิทินยอดขาย '+new Date(Y,M-1,1).toLocaleDateString('th-TH',{month:'long',year:'numeric'});
+$('calSub').textContent=vals.length?'รวม '+money(tot)+' เฉลี่ย '+money(Math.round(tot/vals.length))+' ต่อวัน ขายดีที่สุดวันที่ '+(+best.slice(8)):'ยังไม่มีข้อมูลในเดือนนี้';
+const k=v=>v>=1000?(v/1000).toFixed(1).replace('.0','')+'k':String(Math.round(v));
+let h=['อา','จ','อ','พ','พฤ','ศ','ส','รวมสัปดาห์'].map(d=>`<div class="dh">${d}</div>`).join('');
+for(let w=0;w<Math.ceil((first+dim)/7);w++){let wt=0;for(let d=0;d<7;d++){const n=w*7+d-first+1;if(n<1||n>dim){h+='<div class="cd o"></div>';continue}
+const iso=key+'-'+String(n).padStart(2,'0'),v=by[iso];if(v!=null)wt+=v;if(v==null&&CLOSED.includes(d)){h+=`<div class="cd cl" title="ร้านหยุดประจำ"><small>${n}</small><b>หยุด</b></div>`;continue}
+h+=`<button type="button" class="cd${v==null?' e':''}${iso===best?' best':''}" style="${v!=null?'background:rgba(217,119,87,'+(.12+.63*v/mx).toFixed(2)+')':''}" title="${displayDate(iso)}${v!=null?' '+money(v):''}" onclick="${id[iso]?`editRec('${id[iso]}')`:`newOn('${iso}')`}"><small>${n}</small><b>${v!=null?k(v):''}</b></button>`}
+h+=`<div class="cd wk"><small>สัปดาห์ ${w+1}</small><b>${wt?k(wt):''}</b></div>`}
+$('cal').innerHTML=h;
+const g={};a.forEach(r=>{const d=new Date(r.date+'T00:00:00').getDay();(g[d]=g[d]||[]).push((+r.cash||0)+(+r.transfer||0)+exps(r))});
+const order=[1,2,3,4,5,6,0].filter(d=>!CLOSED.includes(d)||g[d]),all=[].concat(...order.map(d=>g[d]||[])),oa=all.length?sum(all,v=>v)/all.length:0,av=order.map(d=>g[d]?sum(g[d],v=>v)/g[d].length:null),top=Math.max(1,oa,...av.map(v=>v||0));
+const rows=order.map((d,i)=>{const v=av[i],c=g[d]?g[d].length:0,dl=v!=null&&oa?v/oa-1:0,hi=v!=null&&dl>=.08,lo=v!=null&&dl<=-.08,ab=c?g[d].filter(z=>z>oa).length:0;
+return `<div class="wdr"><div>วัน${DAYS[d]}<div class="tiny">บันทึก ${c} วัน</div></div><div><div class="bar"><div style="width:${v?v/top*100:0}%;background:${hi?'#D97757':lo?'#CFC9B6':'#E3B8A5'}"></div><i style="left:${oa/top*100}%"></i></div><div class="tiny" style="margin-top:4px">${c?'สูงกว่าเฉลี่ย '+ab+' จาก '+c+' วัน':'ยังไม่มีข้อมูล'}</div></div><div class="num"><b>${v!=null?money(Math.round(v)):'—'}</b><div class="tiny" style="color:${hi?'var(--clayd)':'var(--mut)'}">${v!=null?(hi?'คนเยอะ ':lo?'คนน้อย ':'ปกติ ')+(dl>=0?'+':'')+Math.round(dl*100)+'%':''}</div></div></div>`}).join('');
+const rk=order.map((d,i)=>[d,av[i],g[d]?g[d].length:0]).filter(e=>e[1]!=null).sort((p,q)=>q[1]-p[1]);let note='';
+if(rk.length>=2){const t=rk[0],l=rk[rk.length-1];note=`<div style="margin-top:12px"><b>เตรียมวัตถุดิบมากสุดวัน${DAYS[t[0]]} น้อยสุดวัน${DAYS[l[0]]}</b><div class="sub">ยอดต่างกัน ${pc(t[1]/l[1]-1)}${Math.min(...rk.map(e=>e[2]))<3?' ข้อมูลบางวันยังไม่ถึง 3 สัปดาห์ ผลอาจเปลี่ยน':''}</div></div>`}
+$('wd').innerHTML=a.length?rows+note+`<div class="tiny" style="margin-top:10px">เส้นดำในแท่งคือค่าเฉลี่ยทุกวันที่เปิด ร้านหยุดวัน${CLOSED.map(d=>DAYS[d]).join(' ')}ประจำ</div>`:'<div class="empty">ยังไม่มีข้อมูล</div>'}
+function newOn(iso){resetForm();go('entry');$('date').value=displayDate(iso)}
+function preview(){const E=sum([...document.querySelectorAll('.x')],e=>+e.value||0);$('pExp').textContent=money(E);$('pInc').textContent=money(n('cash')+n('transfer')+n('otherIncome')+E)}
+document.querySelectorAll('#form input').forEach(i=>i.addEventListener('input',preview));
+function resetForm(){editId=null;$('form').reset();$('date').value=thToday();$('eTitle').textContent='บันทึกรายวัน';preview()}
+function newRec(){resetForm();go('entry')}
+function saveRec(e){e.preventDefault();const date=parseDate($('date').value);if(!date)return toast('กรอกวันที่เป็น วว/ดด/ปปปป เช่น 12/10/2569');
+const r={id:editId||crypto.randomUUID(),date,cash:n('cash'),transfer:n('transfer'),coffee:n('coffee'),otherIncome:n('otherIncome'),otherIncomeType:$('otherType').value,labor:n('labor'),cashAdvance:n('advance'),expenses:FX.map(([id,c])=>({category:c,amount:n(id)})).filter(x=>x.amount>0),note:$('note').value,details:$('details').value,updatedAt:new Date().toISOString()};
+const i=recs.findIndex(x=>x.id===r.id);i>=0?recs[i]=r:recs.push(r);recs.sort((a,b)=>a.date.localeCompare(b.date));save();if(remoteReady)remoteUpsert('daily',r).then(()=>setConnStatus('เชื่อมต่อ Google Sheets แล้ว · ตรวจข้อมูลทุก 7 วินาที')).catch(err=>{setConnStatus('บันทึกออนไลน์ไม่สำเร็จ');toast('บันทึกในเครื่องแล้ว แต่ส่งขึ้นออนไลน์ไม่สำเร็จ: '+err.message)});$('mf').value=date.slice(0,7);resetForm();go('dash');toast('บันทึกข้อมูลแล้ว')}
+function editRec(id){const r=recs.find(x=>x.id===id);if(!r)return;resetForm();editId=id;go('entry');$('eTitle').textContent='แก้ไขรายการ';$('date').value=displayDate(r.date);$('note').value=r.note||'';$('details').value=r.details||'';
+['cash','transfer','coffee','otherIncome','labor'].forEach(k=>$(k).value=r[k]||'');$('advance').value=r.cashAdvance||'';$('otherType').value=r.otherIncomeType||'cash';
+FX.forEach(([id,c])=>$(id).value=sum((r.expenses||[]).filter(x=>x.category===c),x=>+x.amount||0)||'');preview()}
+function delRec(id){if(!confirm('ลบรายการนี้ใช่หรือไม่'))return;recs=recs.filter(r=>r.id!==id);save();if(remoteReady)remoteDelete('daily',id).catch(e=>{setConnStatus('ลบออนไลน์ไม่สำเร็จ: '+e.message);toast('ลบในเครื่องแล้ว แต่ซิงก์ออนไลน์ไม่สำเร็จ')});renderHist();toast('ลบรายการแล้ว')}
+function renderHist(){const s=$('q').value.toLowerCase(),m=$('hm').value;
+const a=recs.filter(r=>(!m||r.date.startsWith(m))&&(displayDate(r.date)+' '+(r.note||'')+' '+(r.details||'')).toLowerCase().includes(s)).sort((p,q)=>q.date.localeCompare(p.date));
+$('hRows').innerHTML=a.length?a.map(r=>`<tr><td>${displayDate(r.date)}</td><td>${esc(r.note||'—')}</td><td class="num">${money(r.cash)}</td><td class="num">${money(r.transfer)}</td><td class="num">${money(exps(r))}</td><td class="num">${money(r.coffee)}</td><td class="num"><b>${money(inc(r))}</b></td><td class="no-print"><button class="lnk" onclick="editRec('${r.id}')">แก้ไข</button><button class="lnk del" onclick="delRec('${r.id}')">ลบ</button></td></tr>`).join(''):'<tr><td colspan="8" class="empty">ไม่พบรายการ</td></tr>'}
+function resetX(){editX=null;$('xform').reset();$('xDate').value=thToday()}
+function saveX(e){e.preventDefault();const date=parseDate($('xDate').value);if(!date)return toast('กรอกวันที่เป็น วว/ดด/ปปปป เช่น 12/10/2569');
+const cash=+$('xCash').value||0,transfer=+$('xTr').value||0;if(cash+transfer<=0)return toast('ใส่จำนวนเงินสดหรือเงินโอนอย่างน้อยหนึ่งช่อง');
+const r={id:editX||crypto.randomUUID(),date,note:$('xNote').value.trim(),cash,transfer,details:$('xDet').value,updatedAt:new Date().toISOString()};
+const i=xs.findIndex(x=>x.id===r.id);i>=0?xs[i]=r:xs.push(r);xs.sort((a,b)=>a.date.localeCompare(b.date));save();if(remoteReady)remoteUpsert('extra',r).catch(err=>{setConnStatus('บันทึกออนไลน์ไม่สำเร็จ');toast('บันทึกในเครื่องแล้ว แต่ส่งขึ้นออนไลน์ไม่สำเร็จ: '+err.message)});resetX();renderX();toast('บันทึกรายการเพิ่มเติมแล้ว')}
+function editXr(id){const r=xs.find(x=>x.id===id);if(!r)return;editX=id;$('xDate').value=displayDate(r.date);$('xNote').value=r.note||'';$('xCash').value=r.cash||'';$('xTr').value=r.transfer||'';$('xDet').value=r.details||'';scrollTo({top:0,behavior:'smooth'});toast('แก้ไขแล้วกดบันทึกเพื่อยืนยัน')}
+function delX(id){if(!confirm('ลบรายการเพิ่มเติมนี้ใช่หรือไม่'))return;xs=xs.filter(r=>r.id!==id);save();if(remoteReady)remoteDelete('extra',id).catch(e=>{setConnStatus('ลบออนไลน์ไม่สำเร็จ: '+e.message);toast('ลบในเครื่องแล้ว แต่ซิงก์ออนไลน์ไม่สำเร็จ')});renderX();toast('ลบรายการแล้ว')}
+function renderX(){const[a,x]=sel(),c=sum(x,r=>+r.cash||0),t=sum(x,r=>+r.transfer||0);
+$('eC').textContent=money(c);$('eT').textContent=money(t);$('eCL').textContent=money(inCh(a,'cash')-c);$('eTL').textContent=money(inCh(a,'transfer')-t);
+const l=[...x].sort((p,q)=>q.date.localeCompare(p.date));
+$('xRows').innerHTML=l.length?l.map(r=>`<tr><td>${displayDate(r.date)}</td><td>${esc(r.note)}</td><td class="num">${money(r.cash)}</td><td class="num">${money(r.transfer)}</td><td class="num"><b>${money((+r.cash||0)+(+r.transfer||0))}</b></td><td class="no-print"><button class="lnk" onclick="editXr('${r.id}')">แก้ไข</button><button class="lnk del" onclick="delX('${r.id}')">ลบ</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">ยังไม่มีรายการเพิ่มเติมในเดือนนี้</td></tr>'}
+function dl(rows,name){const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function exportCSV(){const rows=[['วันที่','หมายเหตุ','เงินสด','เงินโอน','ขายกาแฟ','รายได้เพิ่มเติม','รายรับรวม','หมวดรายจ่าย','จำนวนเงิน','ค่าแรง','เงินเบิก','รายละเอียด']];
+recs.forEach(r=>{const b=[displayDate(r.date),r.note||'',r.cash,r.transfer,r.coffee,r.otherIncome,inc(r)],z=[r.details||''];(r.expenses?.length?r.expenses:[{category:'',amount:0}]).forEach((x,i)=>rows.push([...b,x.category,x.amount,i?'':r.labor||0,i?'':r.cashAdvance||0,...z]))});dl(rows,'krua-sabaidee-finance.csv')}
+function exportX(){dl([['วันที่','รายละเอียด','จ่ายเงินสด','จ่ายเงินโอน','หมายเหตุ'],...xs.map(r=>[displayDate(r.date),r.note,r.cash,r.transfer,r.details||''])],'krua-sabaidee-additional-expenses.csv')}
+// --- Google Sheets / Apps Script shared-data connector ---
+const REMOTE_CFG_KEY='ks_remote_config_v1';
+let remoteReady=false, remoteBusy=false, pollHandle=null;
+const remoteCfg=()=>{try{return JSON.parse(localStorage.getItem(REMOTE_CFG_KEY)||'null')}catch(e){return null}};
+function openConnect(){const c=remoteCfg();$('apiUrl').value=c?.url||'';$('apiPass').value=c?.password||'';$('connectMsg').textContent='';$('connectLayer').style.display='flex'}
+function closeConnect(){$('connectLayer').style.display='none'}
+function forgetConnect(){if(!confirm('ล้าง URL และรหัสผ่านที่บันทึกในเครื่องนี้? ข้อมูลใน Google Sheets จะไม่ถูกลบ'))return;localStorage.removeItem(REMOTE_CFG_KEY);remoteReady=false;if(pollHandle)clearInterval(pollHandle);$('connectMsg').textContent='ล้างการตั้งค่าแล้ว';toast('ล้างการตั้งค่าการเชื่อมต่อแล้ว')}
+function apiCall(action, params={}){return new Promise((resolve,reject)=>{const c=remoteCfg();if(!c?.url||!c?.password)return reject(new Error('ยังไม่ได้ตั้งค่าการเชื่อมต่อ'));const cb='kscb_'+Date.now()+'_'+Math.random().toString(36).slice(2);const sc=document.createElement('script');let done=false;const cleanup=()=>{if(done)return;done=true;clearTimeout(timer);delete window[cb];sc.remove()};window[cb]=(res)=>{cleanup();if(res&&res.ok)resolve(res);else reject(new Error(res?.error||'เชื่อมต่อไม่สำเร็จ'))};sc.onerror=()=>{cleanup();reject(new Error('เรียก Apps Script ไม่สำเร็จ ตรวจ URL /exec และการเผยแพร่ Web App'))};const q=new URLSearchParams({action,password:c.password,callback:cb,...params});sc.src=c.url+(c.url.includes('?')?'&':'?')+q.toString();const timer=setTimeout(()=>{cleanup();reject(new Error('หมดเวลารอการตอบกลับ'))},20000);document.head.appendChild(sc)})}
+function jsonParam(obj){return JSON.stringify(obj)}
+async function remoteUpsert(type, rec){await apiCall('upsert',{kind:type,data:jsonParam(rec)})}
+async function remoteDelete(type,id){await apiCall('delete',{kind:type,id})}
+async function syncAllLocalChanges(){if(!remoteReady||remoteBusy)return;remoteBusy=true;try{const c=remoteCfg();for(const r of recs)await remoteUpsert('daily',r);for(const r of xs)await remoteUpsert('extra',r);}catch(e){console.warn('Remote sync:',e);setConnStatus('ซิงก์ไม่สำเร็จ: '+e.message)}finally{remoteBusy=false}}
+function setConnStatus(msg){const st=document.querySelector('.top .sub.st');if(st)st.innerHTML='<i></i>'+esc(msg)}
+async function pullRemote(showToast=false){if(!remoteReady||remoteBusy)return;remoteBusy=true;try{const r=await apiCall('list');const incomingDaily=Array.isArray(r.daily)?r.daily:[],incomingExtra=Array.isArray(r.extra)?r.extra:[];
+const merge=(local,remote)=>{const m=new Map();[...local,...remote].forEach(x=>{if(!x||!x.id)return;const old=m.get(x.id);if(!old||String(x.updatedAt||'')>=String(old.updatedAt||''))m.set(x.id,x)});return [...m.values()].sort((a,b)=>String(a.date||'').localeCompare(String(b.date||'')))};
+const oldDaily=JSON.stringify(recs),oldExtra=JSON.stringify(xs);recs=merge(recs,incomingDaily);xs=merge(xs,incomingExtra);localStorage.setItem('ks_records_v2',JSON.stringify(recs));localStorage.setItem('ks_extra_records_v1',JSON.stringify(xs));if(oldDaily!==JSON.stringify(recs)||oldExtra!==JSON.stringify(xs)){render();renderHist();renderX()}setConnStatus('เชื่อมต่อ Google Sheets แล้ว · ตรวจข้อมูลทุก 7 วินาที');if(showToast)toast('เชื่อมต่อและซิงก์ข้อมูลแล้ว');
+}catch(e){setConnStatus('ออฟไลน์/เชื่อมต่อไม่ได้');if(showToast)throw e}finally{remoteBusy=false}}
+async function connectNow(){const url=$('apiUrl').value.trim(),password=$('apiPass').value;if(!url.endsWith('/exec')||!/^https:\/\/script\.google\.com\/macros\/s\//.test(url)){ $('connectMsg').textContent='URL ต้องเป็น Apps Script Web App URL ที่ลงท้ายด้วย /exec';return}if(!password){$('connectMsg').textContent='กรุณากรอกรหัสผ่าน';return}localStorage.setItem(REMOTE_CFG_KEY,JSON.stringify({url,password}));$('connectMsg').textContent='กำลังตรวจสอบการเชื่อมต่อ…';try{const r=await apiCall('list');const remoteDaily=Array.isArray(r.daily)?r.daily:[],remoteExtra=Array.isArray(r.extra)?r.extra:[];
+// Preserve existing browser data on first connection by uploading it if the remote tables are empty.
+if(remoteDaily.length===0&&remoteExtra.length===0&&(recs.length||xs.length)){remoteReady=true;await syncAllLocalChanges()}else{recs=remoteDaily;xs=remoteExtra;localStorage.setItem('ks_records_v2',JSON.stringify(recs));localStorage.setItem('ks_extra_records_v1',JSON.stringify(xs))}
+remoteReady=true;closeConnect();render();renderHist();renderX();setConnStatus('เชื่อมต่อ Google Sheets แล้ว · ตรวจข้อมูลทุก 7 วินาที');if(pollHandle)clearInterval(pollHandle);pollHandle=setInterval(()=>pullRemote(false),7000);toast('เชื่อมต่อสำเร็จ');}catch(e){$('connectMsg').textContent='เชื่อมต่อไม่สำเร็จ: '+e.message}}
+
+$('mf').value=new Date().toISOString().slice(0,7);$('mf').onchange=render;$('date').value=thToday();$('xDate').value=thToday();
+recs.forEach(r=>{r.labor=+r.labor||0;r.cashAdvance=+r.cashAdvance||0});
+preview();render();if(remoteCfg()){remoteReady=true;pullRemote(false).then(()=>{if(pollHandle)clearInterval(pollHandle);pollHandle=setInterval(()=>pullRemote(false),7000)}).catch(()=>{});}else{setConnStatus('ยังไม่เชื่อมต่อข้อมูลกลาง');setTimeout(openConnect,400)}addEventListener('resize',()=>{if(!$('dash').classList.contains('hidden'))render()});
+</script></body></html>
